@@ -13,6 +13,9 @@ var start = {
         $(".pages").off().on('click',function(){
             location.href="/page";
         });
+        $(".sign").off().on("click",function(){
+            location.href="/sign";
+        });
     },
     test:function(){
 
@@ -34,6 +37,7 @@ start.bind();
    <p><input type="password" name="password"></p>
    <input type='button' value="submit">
    <input type="button" value="cancel">
-   <p><input type="button" value="Test page Move" class="pages"></p>
+   <p><input type="button" value="Test page Move" class="pages">
+      <input type="button" value="TestSign" class="sign"></p>
 </body>
 </html>

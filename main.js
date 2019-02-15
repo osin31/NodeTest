@@ -12,10 +12,13 @@ oracledb.getConnection({
   connectString:dbConfig.connectString //oracle설치할때 지정한 이름(파일명으로 확인가능)
 },function(err,con){
   if(err){
-    console.log("접속이 실패했습니다.",err);
+    console.log("user:"+con);
+    console.log(oracledb);
+    console.log("접속이 실패했습니다1.",err);
   }
   conn = con;
 });
+
 app.get('/',function(req,res){
   fs.readFile('main.html',function(error,data){
     res.writeHead(200,{'Content-Type':'text/html'});
@@ -31,22 +34,22 @@ app.get('/page',function(req,res){
     res.end(data);
   });
 });
-app.get('/main',function(error,data){
+app.get('/main',function(req,res){
   fs.readFile('main.html',function(error,data){
     res.writeHead(200,{'Content-Type':'text/html'});
     console.log("data::"+data);
     res.end(data);
   });
 });
-app.get('/sign',function(error,data){
+app.get('/sign',function(req,res){
   fs.readFile('sign.html',function(error,data){
     res.writeHead(200,{'Content-Type':'text/html'});
     console.log("data::"+data);
     res.end(data);
   })
 });
-app.post('/insertSign',function(request,response){
-  console.log(request.body);
+app.post('/insertSign',function(req,res){
+  console.log(req.body.id);
   var writer = request.body.writer;
   var title = request.body.title;
   var content = request.body.content;
@@ -64,6 +67,6 @@ app.post('/insertSign',function(request,response){
     }
     }
 })
-app.listen(3303,function(){
+app.listen(1521,function(){
   console.log('server start');
 })
